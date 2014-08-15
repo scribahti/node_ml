@@ -1,8 +1,10 @@
 'use strict';
 
+var csv     = require('csv'); 
+var train   = process.cwd() + '/train.csv';
+var test    = process.cwd() + '/test.csv';
 
-var train   = require(process.cwd() + '/train.csv');
-var test    = require(process.cwd() + '/test.csv');
 
-console.log(train);
-console.log(test);
+console.log('Reading from...\n' + train + '\n');
+
+csv.from.path('/tmp/data.csv').on('data', console.log);
