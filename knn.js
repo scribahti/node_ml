@@ -5,8 +5,8 @@ var fs          = require('fs'),
     stream      = require('stream');
 
 
-var train       = process.cwd() + '\\train.txt';
-var test        = process.cwd() + '\\test.csv';
+var train       = process.cwd() + '\\train.csv',
+    test        = process.cwd() + '\\test.csv';
 
 
 // see http://strongloop.com/strongblog/practical-examples-of-the-new-node-js-streams-api/
@@ -35,14 +35,25 @@ console.log('Reading from...\n' + train + '\n');
 
 source.pipe(liner);
 
-var count = 0;
+var lineNo = 0;
 
 liner.on('readable', function () {
      var line;
      
      while (line = liner.read()) {
-          // do something with line
-          count += 1;
-          console.log(count + ':\t' + typeof line);
-     }
+        // do something with line
+        lineNo += 1;
+
+        if (lineNo === 1) continue; 
+
+        else {
+
+            var data = line.split(',');
+
+            var label       = data[0];
+            var features    = data.slice(1);
+
+            console.log(lineNo + ':\t' + label + '\t' + features.slice(200,210));
+        }
+    }
 })
