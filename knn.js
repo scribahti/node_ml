@@ -93,6 +93,9 @@ function distance_helper(a, b) {
 
 
 Array.matrix = function(m, n, initial) {
+    // return an m * n matrix
+    // elems initialized to <initial>
+
     var a, i, j, mat = []; 
     for (i = 0; i < m; i += 1) {
         a = [];
@@ -104,25 +107,25 @@ Array.matrix = function(m, n, initial) {
     return mat; 
 }; 
 
-var a = [4,-2,3];
-var b = [3,3,4];
-// console.log(distance(a, b));
-
 var sample = [
-    [0.2, 0.5, 0.6],
-    [0.3, 0.4, 0.8],
-    [-0.1, 0.25, 0.5]
+    // [label, f0, f1, ... ]                  
+    [0.2, 0.5, 0.6, 0.25], 
+    [0.3, 0.4, 0.8, 0.36],  
+    [-0.1, 0.25, 0.5, 0.34], 
+    [0.2, 0.45, 0.3, 0.5] 
 ];
+
+sample.push([0.1,0.6,0.75,0.4]); // appends the array to sample 
+
+console.log(sample);
+console.log(sample.length) // # rows = 5 
+console.log('\n'); 
 
 function distance_matrix(mat) {
     var i, j, dist_mat = Array.matrix(mat.length, mat.length, 0);
 
-    for (i = 0; i < mat.length; i+=1) {
-        for (j = 0; j < mat.length; j+=1) {
-            // console.log('i:\t' + mat[i]);
-            // console.log('j:\t' + mat[j]); 
-            // console.log('Dist: ' + distance(mat[i], mat[j]) + '\n'); 
-
+    for (i = 0; i < mat.length; i+=1) {         // i = rows
+        for (j = 0; j < mat.length; j+=1) {     // j = rows
             dist_mat[i][j] = distance(mat[i], mat[j]); 
         }
     }
@@ -131,12 +134,13 @@ function distance_matrix(mat) {
 
 var dist = distance_matrix(sample); 
 
-console.log(dist + '\n'); 
+// console.log(dist); 
+// console.log('\n'); 
 
-var sorter = new sort(); 
+// var sorter = new sort(); 
 
-console.log("Merge Sort:\n");
-console.log(sorter.mergeSort(dist[0]));
-console.log(sorter.mergeSort(dist[1]));
-console.log(sorter.mergeSort(dist[2]));
+// console.log("Merge Sort:\n");
+// console.log(sorter.mergeSort(dist[0]));
+// console.log(sorter.mergeSort(dist[1]));
+// console.log(sorter.mergeSort(dist[2])); 
 
